@@ -7,17 +7,17 @@ function auth(req, res, next) {
         }
     })
     .then(function (data) {
-        if(req.payload.payload.id === data.userId){
+        if(req.payload.id === data.userId){
             next()
         }else {
-            res.json({
+            res.status(401).json({
                 msg: 'data not match'
             })
         }
         
     })
     .catch(function (err) {
-        res.json({
+        res.status(404).json({
             msg: 'dont have any data'
         })
         

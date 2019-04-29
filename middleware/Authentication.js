@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 function isLogin(req, res, next) {
+    console.log(req.headers)
    if(req.headers.hasOwnProperty('token')){
       try {
         const payload = jwt.verify(req.headers.token, process.env.SECRET)

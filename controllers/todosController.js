@@ -5,7 +5,7 @@ class ControllerTodos {
  static getTodo(req, res) {
         Todo.findAll({
             where : {
-                userId : req.payload.payload.id
+                userId : req.payload.id
             }
         })
         .then(function (data) {
@@ -33,7 +33,7 @@ class ControllerTodos {
         Todo.findByPk(id)
         .then(function (data) {
             if(!data){
-                res.json({
+                res.status(200).json({
                     msg: 'data not found'
                 })
 
@@ -43,7 +43,7 @@ class ControllerTodos {
             
         })
         .catch(function (err) {
-            res.json({
+            res.status(400).json({
                 msg:'data fail'
             })
             
@@ -55,12 +55,12 @@ class ControllerTodos {
             title : req.body.title,
             description : req.body.description,
         
-        }, {idUser : req.payload.payload.id})
+        }, {idUser : req.payload.id})
         .then(function (data) {
             res.status(201).json(data)
         })
         .catch(function (err) {
-            res.json({
+            res.status(400).json({
                 msg: 'create fail'
             })
             
@@ -79,7 +79,7 @@ class ControllerTodos {
             res.status(201).json(data)
         })
         .catch(function () {
-            res.json({
+            res.status(400).json({
                 msg: 'update fail'
 
             })
@@ -99,7 +99,7 @@ class ControllerTodos {
             
         })
         .catch(function (err) {
-            res.json({
+            res.status(400).json({
                 msg : 'delete fail'
 
             })
