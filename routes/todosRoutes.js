@@ -1,0 +1,12 @@
+const router = require('express').Router()
+const controllersTodo = require('../controllers/todosController')
+const isAunthenticate = require('../middleware/Authentication')
+const isAuthorize = require('../middleware/Authorization')
+router.use(isAunthenticate)
+router.get('/',controllersTodo.getTodo)
+router.get('/:id', isAuthorize, controllersTodo.getOneTodo)
+router.post('/', controllersTodo.createTodo)
+router.delete('/:id', isAuthorize, controllersTodo.deleteTodo)
+router.put('/:id', isAuthorize, controllersTodo.updateTodo)
+router.patch('/:id', isAuthorize, controllersTodo.updateTodo)
+module.exports = router
